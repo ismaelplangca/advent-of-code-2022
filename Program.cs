@@ -4,7 +4,7 @@
     // Inputs -> Day1.txt
     public static void Main(string[] args)
     {
-        var sol = new Day_06.Day();
+        var sol = new Day_07.Day();
         sol.S2();
     }
 }

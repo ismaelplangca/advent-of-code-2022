@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ismae\\VSC_Projects\\Advent_Of_Code-2022\\Advent_Of_Code-2022.csproj": {}
+    "C:\\Users\\ismae\\VSC_Projects\\advent_of_code-2022\\Advent_Of_Code-2022.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ismae\\VSC_Projects\\Advent_Of_Code-2022\\Advent_Of_Code-2022.csproj": {
+    "C:\\Users\\ismae\\VSC_Projects\\advent_of_code-2022\\Advent_Of_Code-2022.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ismae\\VSC_Projects\\Advent_Of_Code-2022\\Advent_Of_Code-2022.csproj",
+        "projectUniqueName": "C:\\Users\\ismae\\VSC_Projects\\advent_of_code-2022\\Advent_Of_Code-2022.csproj",
         "projectName": "Advent_Of_Code-2022",
-        "projectPath": "C:\\Users\\ismae\\VSC_Projects\\Advent_Of_Code-2022\\Advent_Of_Code-2022.csproj",
+        "projectPath": "C:\\Users\\ismae\\VSC_Projects\\advent_of_code-2022\\Advent_Of_Code-2022.csproj",
         "packagesPath": "C:\\Users\\ismae\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ismae\\VSC_Projects\\Advent_Of_Code-2022\\obj\\",
+        "outputPath": "C:\\Users\\ismae\\VSC_Projects\\advent_of_code-2022\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ismae\\AppData\\Roaming\\NuGet\\NuGet.Config"
