@@ -84,8 +84,8 @@ namespace Day_07
         public string Name { get; set; }
         public Dir Parent { get; set; }
         public long Size { get; set; }
-        public ICollection<Dir> SubDirs { get; set; } = new List<Dir>();
-        public ICollection<CommsFile> Files { get; set; } = new List<CommsFile>();
+        public List<Dir> SubDirs { get; set; } = new List<Dir>();
+        public List<CommsFile> Files { get; set; } = new List<CommsFile>();
 
         public Dir(string name, Dir? parent) =>
         (Name, Parent) = (name, parent!);
@@ -94,7 +94,7 @@ namespace Day_07
         {
             return
                 "Dir(Name=" + Name +
-                ",Parent=" + (Parent is null ? "null" : Parent.Name)   +
+                ",Parent=" + Parent.Name ?? "null" +
                 ",Size=" + Size +
                 ",SubDirs=" + String.Join(",", SubDirs.Select(a => a.Name) ) +
                 ",Files=" + String.Join(",", Files.Select(a => a.Name) ) + ")";
