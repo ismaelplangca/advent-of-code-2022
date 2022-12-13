@@ -20,15 +20,13 @@ namespace Day_04
                         );
                 }).ToList();
         }
-        public void S1()
+        public int S1()
         {
-            var output = elves.Select(Enclosed).Count(a => a);
-            Console.WriteLine(output);
+            return elves.Select(Enclosed).Count(a => a);
         }
-        public void S2()
+        public int S2()
         {
-            var output = elves.Select(Overlaps).Count(a => a);
-            Console.WriteLine(output);
+            return elves.Select(Overlaps).Count(a => a);
         }
         bool Enclosed(duo elves)
         {

@@ -24,16 +24,16 @@ namespace Day_02
         {
             input = File.ReadAllLines("Day_02\\input.txt").ToList();
         }
-        public void S1()
+        public int S1()
         {
-            var totalScore = input.Select(a => CalcRound(ReadMove(a[0]), ReadMove(a[2]) ) ).Sum();
-            Console.WriteLine(totalScore);
+            // TotalScore
+            return input.Select(a => CalcRound(ReadMove(a[0]), ReadMove(a[2]) ) ).Sum();
         }
         // X = lose, Y = draw, Z = win
-        public void S2()
+        public int S2()
         {
-            var totalScore = input.Select(a => CalcRound(ReadMove(a[0]), FollowStrategy(ReadMove(a[0]), a[2]) ) ).Sum();
-            Console.WriteLine(totalScore);
+            // TotalScore
+            return input.Select(a => CalcRound(ReadMove(a[0]), FollowStrategy(ReadMove(a[0]), a[2]) ) ).Sum();
         }
         move ReadMove(char input)
         {

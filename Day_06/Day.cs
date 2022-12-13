@@ -7,13 +7,13 @@ namespace Day_06
         {
             input = File.ReadAllLines("Day_06\\input.txt").First();
         }
-        public void S1()
+        public int S1()
         {
-            Console.WriteLine(FindMarker(input, 4) );
+            return FindMarker(input, 4);
         }
-        public void S2()
+        public int S2()
         {
-            Console.WriteLine(FindMarker(input, 14) );
+            return FindMarker(input, 14);
         }
         int FindMarker(string input, int windowLen)
         {

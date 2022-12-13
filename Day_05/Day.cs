@@ -12,19 +12,17 @@ namespace Day_05
             stacks = ParseStacks(input[0]);
             regex = new Regex(@"^move (\d+) from (\d+) to (\d+)$");
         }
-        public void S1()
+        public string S1()
         {
             foreach(var line in input[1].Split("\n", StringSplitOptions.RemoveEmptyEntries) )
                 ExecuteS1(ParseMove(line) );
-            var output = String.Join("", stacks.Select(a => a.Peek().ToString() ) );
-            Console.WriteLine(output);
+            return String.Join("", stacks.Select(a => a.Peek().ToString() ) );
         }
-        public void S2()
+        public string S2()
         {
             foreach(var line in input[1].Split("\n", StringSplitOptions.RemoveEmptyEntries) )
                 ExecuteS2(ParseMove(line) );
-            var output = String.Join("", stacks.Select(a => a.Peek().ToString() ) );
-            Console.WriteLine(output);
+            return String.Join("", stacks.Select(a => a.Peek().ToString() ) );
         }
         Stack<char>[] ParseStacks(string input)
         {

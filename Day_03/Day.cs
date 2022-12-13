@@ -8,21 +8,19 @@ namespace Day_03
         {
             input = File.ReadAllLines("Day_03\\input.txt").ToList();
         }
-        public void S1()
+        public int S1()
         {
-            var output = input
+            return input
                 .Select(SplitInHalf)
                 .Select(a => a[0].Intersect(a[1]).First() )
                 .Sum(GetPriority);
-            Console.WriteLine(output);
         }
-        public void S2()
+        public int S2()
         {
-            var output = input
+            return input
                 .Chunk(3)
                 .Select(a => a[0].Intersect(a[1]).Intersect(a[2]).First() )
                 .Sum(GetPriority);
-            Console.WriteLine(output);
         }
         string[] SplitInHalf(string line)
         {

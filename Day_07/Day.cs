@@ -55,7 +55,7 @@ namespace Day_07
                         };
                     break;
                     case "ls" :
-                        var ls = input.Skip(i + 1).TakeWhile(a => a[0] != '$' );
+                        var ls = input.Skip(i + 1).TakeWhile(a => a[0] != '$');
                         foreach(var line in ls)
                         {
                             var spl = line.Split(' ');
