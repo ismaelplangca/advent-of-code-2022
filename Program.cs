@@ -4,8 +4,7 @@
     // Inputs -> Day1.txt
     public static void Main(string[] args)
     {
-        var sol = new Day_08.Day();
-        var output = sol.S1();
+        var output = new Day_08.Day().S2();
         Console.WriteLine(output);
     }
 }

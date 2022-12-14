@@ -2,74 +2,102 @@ namespace Day_08;
 
 public class Day
 {
-    short[,] input;
-    Tree [,] trees;
+    short[,] forest;
     public Day()
     {
-        var inp = File.ReadAllText("Day_08\\input.txt").Split("\n");
-        input = new short[inp[0].Length,inp.Count()];
-        for(int i = 0; i < input.GetLength(0); i++)
-            for(int j = 0; j < input.GetLength(1); j++)
-                input[i,j] = short.Parse(inp[i][j]+"");
-        trees = ParseInput(input);
+        var lines = File.ReadAllLines("Day_08\\input.txt");
+        
+        forest = new short[lines.Count(),lines[0].Length];
+        for(int row = 0; row < forest.GetLength(0); row++)
+            for(int col = 0; col < forest.GetLength(1); col++)
+                forest[row,col] = (short)char.GetNumericValue(lines[row][col]);
     }
     public int S1()
     {
-        return trees
+        var count = 0;
+        var rowLen = forest.GetLength(0);
+        var colLen = forest.GetLength(1);
+        for(var row = 0; row < rowLen; row++)
+            for(var col = 0; col < colLen; col++)
+                if(SolveVisibility(forest[row,col], row, col) )
+                    count++;
+        return count;
     }
-    Tree[,] ParseInput(short[,] input)
+    public int S2()
     {
-        var lenX = input.GetLength(0);
-        var lenY = input.GetLength(1);
-        var trees = new Tree[lenX,lenY];
-        for(short i = 0; i < lenX; i++)
-        {
-            if(i == 0 || i == lenX - 1) {
-                for(short j = 0; j < lenY; j++) {
-                    var t = new Tree(input[i,j]);
-                    t.AtEdge = true;
-                    trees[i,j] = t;
-                }
-            } else {
-                for(short j = 0; j < lenY; j++)
-                    trees[i,j] = new Tree(input[i,j]);
-                trees[i, 0].AtEdge = true;
-                trees[i, lenY - 1].AtEdge =  true;
+        var count = 0;
+        var rowLen = forest.GetLength(0);
+        var colLen = forest.GetLength(1);
+        for(var row = 0; row < rowLen; row++)
+            for(var col = 0; col < colLen; col++)
+            {
+                var total = SolveScenicScore(forest[row,col], row, col);
+                if(total > count)
+                    count = total;
             }
+        return count ;
+    }
+    bool SolveVisibility(short height, int row, int col)
+    {
+        var left = !Enumerable
+            .Range(0, col)
+            .Any(i => forest[row, i] >= height);
+
+        var right = !Enumerable
+            .Range(col + 1, forest.GetLength(0) - col - 1)
+            .Any(i => forest[row, i] >= height);
+        
+        var top = !Enumerable
+            .Range(0, row)
+            .Any(i => forest[i, col] >= height);
+
+        var bottom = !Enumerable
+            .Range(row + 1, forest.GetLength(1) - row - 1)
+            .Any(i => forest[i, col] >= height);
+
+        return left || right || top || bottom;
+    }
+    bool AtEdge(int row, int col) => (row == 0 || row == forest.GetLength(1) - 1 || col == 0 || col == forest.GetLength(0) - 1);
+    int SolveScenicScore(short height, int row, int col)
+    {
+        if(AtEdge(row, col) )
+            return 0;
+
+        var left = 0;
+        for(int i = col - 1; i >= 0; i--) {
+            if(forest[row, i] >= height) {
+                left++;
+                break;
+            }
+            left++;
         }
-        return trees;
-    }
-    bool IsVisible(Tree tree, int x, int y)
-    {
-        if(tree.AtEdge)
-            return true;
 
-        while(!trees[x++,y].AtEdge)
-            if(trees[x,y].Height > tree.Height)
-                return true;
-        
-        while(!trees[x--,y].AtEdge)
-            if(trees[x,y].Height > tree.Height)
-                return true;
-        
-        while(!trees[x,y++].AtEdge)
-            if(trees[x,y].Height > tree.Height)
-                return true;
+        var right = 0;
+        for(int i = col + 1; i < forest.GetLength(0); i++) {
+            if(forest[row, i] >= height) {
+                right++;
+                break;
+            }
+            right++;
+        }
 
-        while(!trees[x,y--].AtEdge)
-            if(trees[x,y].Height > tree.Height)
-                return true;
+        var top = 0;
+        for(int i = row - 1; i >= 0; i--) {
+            if(forest[i, col] >= height) {
+                top++;
+                break;
+            }
+            top++;
+        }
 
-        return false;
-    }
-    record Pos(short X, short Y);
-    class Tree
-    {
-        public short Height { get; set; }
-        public bool IsVisible { get; set;}
-        public bool AtEdge { get; set; }
-
-        public Tree(short height) =>
-        (Height) = (height);
+        var bottom = 0;
+        for(int i = row + 1; i < forest.GetLength(1); i++) {
+            if(forest[i, col] >= height) {
+                bottom++;
+                break;
+            }
+            bottom++;
+        }
+        return left * right * top * bottom;
     }
 }
