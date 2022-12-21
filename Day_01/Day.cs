@@ -2,12 +2,11 @@ namespace Day_01
 {
     public class Day
     {
-        List<String> input;
-        List<int>    elves;
+        List<int> elves;
         public Day()
         {
-            input = File.ReadAllLines("Day_01\\input.txt").ToList();
-            elves = input
+            elves = File
+                .ReadAllLines("Day_01\\input.txt")
                 .Aggregate(new List<int>() { 0 }, (list, line) => {
                         if(String.IsNullOrWhiteSpace(line) ) {
                             list.Add(0);

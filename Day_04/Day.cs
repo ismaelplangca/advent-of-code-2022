@@ -2,14 +2,13 @@ namespace Day_04
 {
     public class Day
     {
-        List<string> input;
-        List<duo>    elves;
+        List<duo> elves;
         record pair(int start, int end);
         record duo(pair first, pair second);
         public Day()
         {
-            input = File.ReadAllLines("Day_04\\input.txt").ToList();
-            elves = input
+            elves = File
+                .ReadAllLines("Day_04\\input.txt")
                 .Select(a => a.Split(",") )
                 .Select(a => {
                     var p1 = a[0].Split("-");
