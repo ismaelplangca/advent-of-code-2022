@@ -26,9 +26,7 @@ namespace Day_05
         }
         Stack<char>[] ParseStacks(string input)
         {
-            var stacks = Enumerable.Repeat(0, 9)
-                .Select(a => new Stack<char>() )
-                .ToArray();
+            var stacks = Enumerable.Repeat(new Stack<char>(), 9).ToArray();
             foreach(var line in input.Split("\n").Reverse().Skip(1) )
             {
                 var count = 0;
