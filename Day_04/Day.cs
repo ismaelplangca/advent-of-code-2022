@@ -21,11 +21,11 @@ namespace Day_04
         }
         public int S1()
         {
-            return elves.Select(Enclosed).Count(a => a);
+            return elves.Count(Enclosed);
         }
         public int S2()
         {
-            return elves.Select(Overlaps).Count(a => a);
+            return elves.Count(Overlaps);
         }
         bool Enclosed(duo elves)
         {
