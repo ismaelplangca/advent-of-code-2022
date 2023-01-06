@@ -33,10 +33,11 @@ class Monkey
             .Select(Int32.Parse)
             .ToArray();
         var op = lines[2].IndexOf("old") + 4;
+        var num = op + 1;
         Func<long, long> operation = (long old) => {
-            
-        }; 
-        var divisibleBy = Int32.Parse(lines[3].Substring(lines[3].IndexOf(" ") + 1) );
+            return 1000;
+        };
+        var divisibleBy = Int32.Parse(lines[3].Substring(lines[3].LastIndexOf(" ") + 1) );
         var ifTrue = Int32.Parse(lines[4].Substring(lines[4].LastIndexOf(" ") + 1) );
         var ifFalse = Int32.Parse(lines[5].Substring(lines[5].LastIndexOf(" ") + 1) );
         return new Monkey(new Queue<int>(items), operation, divisibleBy, ifTrue, ifFalse);

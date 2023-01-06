@@ -11,31 +11,23 @@ public class Day
         for(int row = 0; row < forest.GetLength(0); row++)
             for(int col = 0; col < forest.GetLength(1); col++)
                 forest[row,col] = (short)char.GetNumericValue(lines[row][col]);
+
     }
     public int S1()
     {
-        var count = 0;
-        var rowLen = forest.GetLength(0);
-        var colLen = forest.GetLength(1);
-        for(var row = 0; row < rowLen; row++)
-            for(var col = 0; col < colLen; col++)
-                if(SolveVisibility(forest[row,col], row, col) )
-                    count++;
-        return count;
+        return Enumerable.Range(0, forest.GetLength(0) )
+                .SelectMany(row => 
+                    Enumerable.Range(0, forest.GetLength(1) )
+                    .Select(col => new { row, col, val = forest[row, col] } )
+                ).Count(x => SolveVisibility(x.val, x.row, x.col) );
     }
     public int S2()
     {
-        var count = 0;
-        var rowLen = forest.GetLength(0);
-        var colLen = forest.GetLength(1);
-        for(var row = 0; row < rowLen; row++)
-            for(var col = 0; col < colLen; col++)
-            {
-                var total = SolveScenicScore(forest[row,col], row, col);
-                if(total > count)
-                    count = total;
-            }
-        return count ;
+        return Enumerable.Range(0, forest.GetLength(0) )
+                .SelectMany(row => 
+                    Enumerable.Range(0, forest.GetLength(1) )
+                    .Select(col => new { row, col, val = forest[row, col] } )
+                ).Max(x => SolveScenicScore(x.val, x.row, x.col) );
     }
     bool SolveVisibility(short height, int row, int col)
     {
@@ -63,41 +55,26 @@ public class Day
         if(AtEdge(row, col) )
             return 0;
 
-        var left = 0;
-        for(int i = col - 1; i >= 0; i--) {
-            if(forest[row, i] >= height) {
-                left++;
-                break;
-            }
-            left++;
-        }
+        var left = Enumerable
+            .Range(0, col).Reverse()
+            .TakeWhile(i => forest[row, i] < height)
+            .Count();
 
-        var right = 0;
-        for(int i = col + 1; i < forest.GetLength(0); i++) {
-            if(forest[row, i] >= height) {
-                right++;
-                break;
-            }
-            right++;
-        }
+        var right = Enumerable
+            .Range(col + 1, forest.GetLength(0) ).Reverse()
+            .TakeWhile(i => forest[row, i] < height)
+            .Count();
 
-        var top = 0;
-        for(int i = row - 1; i >= 0; i--) {
-            if(forest[i, col] >= height) {
-                top++;
-                break;
-            }
-            top++;
-        }
+        var top = Enumerable
+            .Range(0, row).Reverse()
+            .TakeWhile(i => forest[i, col] < height)
+            .Count();
 
-        var bottom = 0;
-        for(int i = row + 1; i < forest.GetLength(1); i++) {
-            if(forest[i, col] >= height) {
-                bottom++;
-                break;
-            }
-            bottom++;
-        }
+        var bottom = Enumerable
+            .Range(row + 1, forest.GetLength(1) )
+            .TakeWhile(i => forest[i, col] < height)
+            .Count();
+
         return left * right * top * bottom;
     }
 }

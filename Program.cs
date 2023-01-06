@@ -4,7 +4,7 @@
     // Inputs -> Day1.txt
     public static void Main(string[] args)
     {
-        var output = new Day_11.Day().S1();
+        var output = new Day_08.Day().S1();
         Console.WriteLine(output);
     }
 }
