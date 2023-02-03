@@ -16,7 +16,7 @@ public class Day
     public int S1()
     {
         return Enumerable.Range(0, forest.GetLength(0) )
-                .SelectMany(row => 
+                .SelectMany(row =>
                     Enumerable.Range(0, forest.GetLength(1) )
                     .Select(col => new { row, col, val = forest[row, col] } )
                 ).Count(x => SolveVisibility(x.val, x.row, x.col) );
@@ -24,7 +24,7 @@ public class Day
     public int S2()
     {
         return Enumerable.Range(0, forest.GetLength(0) )
-                .SelectMany(row => 
+                .SelectMany(row =>
                     Enumerable.Range(0, forest.GetLength(1) )
                     .Select(col => new { row, col, val = forest[row, col] } )
                 ).Max(x => SolveScenicScore(x.val, x.row, x.col) );
